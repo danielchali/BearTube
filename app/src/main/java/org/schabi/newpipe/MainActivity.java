@@ -432,7 +432,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerHeader() {
-        drawerHeaderBinding.drawerHeaderActionButton.setOnClickListener(view -> toggleServices());
+        drawerHeaderBinding.drawerHeaderActionButton.setVisibility(View.GONE);
+        drawerHeaderBinding.drawerHeaderActionButton.setOnClickListener(null);
+        drawerHeaderBinding.drawerArrow.setVisibility(View.GONE);
 
         // If the current app name is bigger than the default "BearTube" (8 chars),
         // let the text view grow a little more as well.
@@ -450,6 +452,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void toggleServices() {
+        // BearTube only supports YouTube; no other services to toggle
+        return;
         servicesShown = !servicesShown;
 
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_services_group);
@@ -473,7 +477,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showServices() {
-        for (final StreamingService s : NewPipe.getServices()) {
+        for (final StreamingService s : Collections.singletonList(ServiceList.YouTube)) {
             final String title = s.getServiceInfo().getName();
 
             final MenuItem menuItem = drawerLayoutBinding.navigation.getMenu()
@@ -565,6 +569,8 @@ public class MainActivity extends AppCompatActivity {
 
             drawerHeaderBinding.drawerHeaderServiceView.post(() -> drawerHeaderBinding
                     .drawerHeaderServiceView.setSelected(true));
+            drawerHeaderBinding.drawerArrow.setVisibility(View.GONE);
+            drawerHeaderBinding.drawerHeaderActionButton.setVisibility(View.GONE);
             drawerHeaderBinding.drawerHeaderActionButton.setContentDescription(
                     getString(R.string.drawer_header_description) + selectedServiceName);
         } catch (final Exception e) {

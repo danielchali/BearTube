@@ -59,6 +59,7 @@
         app:singleLineTitle="false" />
 
     <PreferenceScreen
+        app:isPreferenceVisible="false"
         android:fragment="org.schabi.newpipe.settings.PeertubeInstanceListFragment"
         android:key="@string/peertube_instance_setup_key"
         android:summary="@string/peertube_instance_url_summary"

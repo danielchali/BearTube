@@ -2,13 +2,17 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/bearsave_splash_green" />
     <item
-        android:width="56dp"
-        android:height="56dp"
+        android:width="96dp"
+        android:height="96dp"
         android:gravity="center"
         android:drawable="@drawable/splash_foreground" />
-    <item android:bottom="48dp">
+    <item
+        android:width="180dp"
+        android:height="45dp"
+        android:gravity="bottom|center_horizontal"
+        android:bottom="48dp">
         <bitmap
             android:src="@drawable/splash_dredlabs_branding"
-            android:gravity="bottom|center_horizontal" />
+            android:gravity="fill" />
     </item>
 </layer-list>

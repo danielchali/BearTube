@@ -87,7 +87,7 @@ object ServiceHelper {
 
     @JvmStatic
     fun getSelectedServiceId(context: Context): Int {
-        return (getSelectedService(context) ?: DEFAULT_FALLBACK_SERVICE).serviceId
+        return DEFAULT_FALLBACK_SERVICE.serviceId
     }
 
     @JvmStatic
@@ -98,7 +98,7 @@ object ServiceHelper {
                 context.getString(R.string.default_service_value)
             )
 
-        return runCatching { NewPipe.getService(serviceName) }.getOrNull()
+        return DEFAULT_FALLBACK_SERVICE
     }
 
     @JvmStatic
@@ -163,6 +163,6 @@ object ServiceHelper {
 
     @JvmStatic
     fun initServices(context: Context) {
-        ServiceList.all().forEach { initService(context, it.serviceId) }
+        // BearTube only supports YouTube; no extra service initialization needed
     }
 }
