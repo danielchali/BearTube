@@ -2,9 +2,6 @@
  * SPDX-FileCopyrightText: 2025 BearTube contributors <>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-rootProject.name = "BearTube"
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -12,6 +9,14 @@ pluginManagement {
         mavenCentral()
     }
 }
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
+}
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+rootProject.name = "BearTube"
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
