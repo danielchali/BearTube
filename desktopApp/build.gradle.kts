@@ -28,6 +28,16 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = BEARTUBE_APPLICATION_ID_NEW
             packageVersion = BEARTUBE_VERSION_NAME
+
+            windows {
+                iconFile.set(project.file("resources/paw-icon.ico"))
+            }
+            macOS {
+                iconFile.set(project.file("resources/paw-icon.icns"))
+            }
+            linux {
+                iconFile.set(project.file("resources/paw-icon.png"))
+            }
         }
     }
 }

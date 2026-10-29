@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">BearTube paw</title>
+  <rect width="512" height="512" rx="112" fill="#0B1F3A"/>
+  <g fill="#EAF4FF">
+    <ellipse cx="164" cy="164" rx="54" ry="68"/><ellipse cx="348" cy="164" rx="54" ry="68"/>
+    <ellipse cx="96" cy="280" rx="47" ry="61"/><ellipse cx="416" cy="280" rx="47" ry="61"/>
+    <path d="M256 230c-38 0-118 66-118 142 0 50 40 64 76 49 27-11 57-11 84 0 36 15 76 1 76-49 0-76-80-142-118-142Z"/>
+  </g>
+</svg>

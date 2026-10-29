@@ -5,8 +5,8 @@
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="colorAccent">@android:color/transparent</item>
-        <item name="colorPrimaryVariant">@color/bearsave_splash_green</item>
-        <item name="colorSurface">@color/bearsave_splash_green</item>
+        <item name="colorPrimaryVariant">@color/beartube_splash_blue</item>
+        <item name="colorSurface">@color/beartube_splash_blue</item>
 
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>

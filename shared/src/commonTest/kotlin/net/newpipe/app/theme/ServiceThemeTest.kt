@@ -7,46 +7,21 @@ package net.newpipe.app.theme
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.v2.runComposeUiTest
-import com.russhwolf.settings.MapSettings
-import com.russhwolf.settings.Settings
+import androidx.compose.ui.graphics.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
-import net.newpipe.app.Constants.KEY_STREAMING_SERVICE
-import net.newpipe.app.extensions.withKoin
-import org.koin.dsl.module
 
 @OptIn(ExperimentalTestApi::class)
 class ServiceThemeTest {
 
     @Test
-    fun testDefaultServiceIsYouTube() = runComposeUiTest {
-        val emptySettings = module {
-            single<Settings> { MapSettings() }
-        }
-
-        withKoin(
-            modules = listOf(emptySettings),
-            content = {
-                assertEquals(currentService(), Service.YOUTUBE)
-            }
-        )
+    fun testOnlyServiceIsYouTube() = runComposeUiTest {
+        assertEquals(currentService(), Service.YOUTUBE)
     }
 
     @Test
-    fun testServiceSwitchingWorks() = runComposeUiTest {
-        val settings = module {
-            single<Settings> {
-                MapSettings(KEY_STREAMING_SERVICE to "PeerTube")
-            }
-        }
-
-        withKoin(
-            modules = listOf(settings),
-            content = {
-                assertNotEquals(currentService(), Service.YOUTUBE)
-                assertEquals(currentService(), Service.PEERTUBE)
-            }
-        )
+    fun testServiceThemeUsesBlue() = runComposeUiTest {
+        assertEquals(youTubeLightScheme.primaryContainer, Color(0xFF1565C0))
+        assertEquals(youTubeDarkScheme.primaryContainer, Color(0xFF0D47A1))
     }
 }
