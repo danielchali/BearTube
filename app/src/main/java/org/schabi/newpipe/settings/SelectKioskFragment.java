@@ -21,13 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
@@ -90,7 +90,8 @@ public class SelectKioskFragment extends DialogFragment {
         private final List<Entry> kioskList = new Vector<>();
 
         SelectKioskAdapter() throws Exception {
-            for (final StreamingService service : java.util.Collections.singletonList(ServiceList.YouTube)) {
+            for (final StreamingService service
+                    : Collections.singletonList(ServiceList.YouTube)) {
                 for (final String kioskId : service.getKioskList().getAvailableKiosks()) {
                     final String name = String.format(getString(R.string.service_kiosk_string),
                             service.getServiceInfo().getName(),
