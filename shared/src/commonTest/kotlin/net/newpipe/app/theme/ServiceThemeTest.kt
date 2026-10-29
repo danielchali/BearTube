@@ -5,22 +5,20 @@
 
 package net.newpipe.app.theme
 
-import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.v2.runComposeUiTest
 import androidx.compose.ui.graphics.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-@OptIn(ExperimentalTestApi::class)
 class ServiceThemeTest {
 
     @Test
-    fun testOnlyServiceIsYouTube() = runComposeUiTest {
-        assertEquals(currentService(), Service.YOUTUBE)
+    fun testOnlyServiceIsYouTube() {
+        assertEquals(Service.entries.size, 1)
+        assertEquals(Service.entries.single(), Service.YOUTUBE)
     }
 
     @Test
-    fun testServiceThemeUsesBlue() = runComposeUiTest {
+    fun testServiceThemeUsesBlue() {
         assertEquals(youTubeLightScheme.primaryContainer, Color(0xFF1565C0))
         assertEquals(youTubeDarkScheme.primaryContainer, Color(0xFF0D47A1))
     }

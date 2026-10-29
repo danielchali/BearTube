@@ -46,6 +46,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
@@ -90,6 +91,7 @@ import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -289,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean drawerItemSelected(final MenuItem item) {
         final int groupId = item.getGroupId();
         if (groupId == R.id.menu_services_group) {
-            changeService(item);
+            return false;
         } else if (groupId == R.id.menu_tabs_group) {
             tabSelected(item);
         } else if (groupId == R.id.menu_kiosks_group) {

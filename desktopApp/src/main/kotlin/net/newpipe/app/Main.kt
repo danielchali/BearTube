@@ -7,19 +7,12 @@ package net.newpipe.app
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import newpipe.shared.generated.resources.Res
-import newpipe.shared.generated.resources.ic_foreground
-import org.jetbrains.compose.resources.painterResource
 
 /**
  * Entry point for compose-related UI components on Desktop
  */
 fun main() = application {
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "BearTube",
-        icon = painterResource(Res.drawable.ic_foreground)
-    ) {
+    Window(onCloseRequest = ::exitApplication, title = "BearTube") {
         App(onCloseRequest = ::exitApplication)
     }
 }
