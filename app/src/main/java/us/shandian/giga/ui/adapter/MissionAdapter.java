@@ -377,7 +377,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         final ArrayList<String> titles = new ArrayList<>();
         int currentIndex = 0;
         if (mIterator != null) {
-            for (int i = 0; i < mIterator.getItemCount(); i++) {
+            for (int i = 0; i < mIterator.getOldListSize(); i++) {
                 final DownloadManager.MissionItem mItem = mIterator.getItem(i);
                 if (mItem != null && mItem.mission instanceof FinishedMission) {
                     final FinishedMission fm = (FinishedMission) mItem.mission;
