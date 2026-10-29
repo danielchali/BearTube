@@ -1,9 +1,7 @@
 package org.schabi.newpipe
 
-import androidx.preference.PreferenceManager
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import leakcanary.LeakCanary
 import okhttp3.OkHttpClient
 import org.schabi.newpipe.extractor.downloader.Downloader
 
@@ -11,16 +9,6 @@ class DebugApp : App() {
     override fun onCreate() {
         super.onCreate()
         initStetho()
-
-        LeakCanary.config = LeakCanary.config.copy(
-            dumpHeap = PreferenceManager
-                .getDefaultSharedPreferences(this).getBoolean(
-                    getString(
-                        R.string.allow_heap_dumping_key
-                    ),
-                    false
-                )
-        )
     }
 
     override fun getDownloader(): Downloader {
@@ -49,10 +37,5 @@ class DebugApp : App() {
 
         // Initialize Stetho with the Initializer
         Stetho.initialize(initializer)
-    }
-
-    override fun isDisposedRxExceptionsReported(): Boolean {
-        return PreferenceManager.getDefaultSharedPreferences(this)
-            .getBoolean(getString(R.string.allow_disposed_exceptions_key), false)
     }
 }

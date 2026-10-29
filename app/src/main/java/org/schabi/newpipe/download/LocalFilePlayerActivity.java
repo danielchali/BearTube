@@ -5,16 +5,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
@@ -35,6 +40,7 @@ public class LocalFilePlayerActivity extends AppCompatActivity {
     private static final long SEEK_DELTA_MS = 10000;
     private static final long REWIND_THRESHOLD_MS = 3000;
     private static final int SEEK_BAR_MAX = 1000;
+    private static final int SWIPE_THRESHOLD_PX = 60;
 
     private ExoPlayer player;
     private final Handler progressHandler = new Handler(Looper.getMainLooper());
@@ -92,7 +98,36 @@ public class LocalFilePlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_local_file_player);
 
         initViews();
+        setupInsets();
+        setupBackNavigation();
         setupPlaylist();
+    }
+
+    private void setupInsets() {
+        final View rootLayout = findViewById(R.id.player_root_layout);
+        if (rootLayout != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(rootLayout, (v, insets) -> {
+                final int topInset = insets.getInsets(
+                        WindowInsetsCompat.Type.statusBars()).top;
+                final int bottomInset = insets.getInsets(
+                        WindowInsetsCompat.Type.navigationBars()).bottom;
+                fullscreenPlayerLayout.setPadding(0, topInset, 0, bottomInset);
+                return insets;
+            });
+        }
+    }
+
+    private void setupBackNavigation() {
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (isFullscreen) {
+                    showFullscreen(false);
+                } else {
+                    finish();
+                }
+            }
+        });
     }
 
     private void initViews() {
@@ -121,6 +156,37 @@ public class LocalFilePlayerActivity extends AppCompatActivity {
 
         miniPlayerCard.setOnClickListener(v -> showFullscreen(true));
         fullCollapse.setOnClickListener(v -> showFullscreen(false));
+
+        final View dragHandle = findViewById(R.id.drag_handle);
+        if (dragHandle != null) {
+            dragHandle.setOnClickListener(v -> showFullscreen(false));
+        }
+
+        final View fullTopBar = findViewById(R.id.full_top_bar);
+        if (fullTopBar != null) {
+            fullTopBar.setOnClickListener(v -> showFullscreen(false));
+        }
+
+        final GestureDetector gestureDetector = new GestureDetector(this,
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onFling(final MotionEvent e1, final MotionEvent e2,
+                                           final float velocityX, final float velocityY) {
+                        if (e1 != null && e2 != null
+                                && (e2.getY() - e1.getY() > SWIPE_THRESHOLD_PX)
+                                && Math.abs(velocityY) > SWIPE_THRESHOLD_PX) {
+                            showFullscreen(false);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+        final View.OnTouchListener swipeListener = (v, event) -> {
+            gestureDetector.onTouchEvent(event);
+            return false;
+        };
+        fullscreenPlayerLayout.setOnTouchListener(swipeListener);
+
         miniClose.setOnClickListener(v -> finish());
         fullClose.setOnClickListener(v -> finish());
 
@@ -189,6 +255,13 @@ public class LocalFilePlayerActivity extends AppCompatActivity {
         }
 
         player = new ExoPlayer.Builder(this).build();
+        final com.google.android.exoplayer2.audio.AudioAttributes audioAttrs =
+                new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
+                        .setUsage(com.google.android.exoplayer2.C.USAGE_MEDIA)
+                        .setContentType(com.google.android.exoplayer2.C.AUDIO_CONTENT_TYPE_MUSIC)
+                        .build();
+        player.setAudioAttributes(audioAttrs, true);
+        player.setHandleAudioBecomingNoisy(true);
         fullPlayerView.setPlayer(player);
         player.addListener(new Player.Listener() {
             @Override
@@ -326,8 +399,23 @@ public class LocalFilePlayerActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (player != null && player.isPlaying()) {
+            progressHandler.post(progressRunnable);
+            updatePlayPauseButton(true);
+        }
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
+        progressHandler.removeCallbacks(progressRunnable);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         progressHandler.removeCallbacks(progressRunnable);
         if (player != null) {
             player.release();

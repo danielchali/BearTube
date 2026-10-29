@@ -250,13 +250,6 @@ public class MainActivity extends AppCompatActivity {
     private void addDrawerMenuForCurrentService() throws ExtractionException {
         //Tabs
         drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
-                        R.string.tab_subscriptions)
-                .setIcon(R.drawable.ic_tv);
-        drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
-                .setIcon(R.drawable.ic_subscriptions);
-        drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
                 .setIcon(R.drawable.ic_bookmark);
         drawerLayoutBinding.navigation.getMenu()
@@ -313,17 +306,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void tabSelected(final MenuItem item) {
         switch (item.getItemId()) {
-            case ITEM_ID_SUBSCRIPTIONS:
-                NavigationHelper.openSubscriptionFragment(getSupportFragmentManager());
-                break;
-            case ITEM_ID_FEED:
-                NavigationHelper.openFeedFragment(getSupportFragmentManager());
-                break;
             case ITEM_ID_BOOKMARKS:
                 NavigationHelper.openBookmarksFragment(getSupportFragmentManager());
                 break;
             case ITEM_ID_DOWNLOADS:
-                NavigationHelper.openDownloads(this);
+                startService(new Intent(this, DownloadManagerService.class));
+                NavigationHelper.openDownloadsFragment(getSupportFragmentManager());
                 break;
             case ITEM_ID_HISTORY:
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
@@ -350,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openSettings(this);
                 break;
             case ITEM_ID_ABOUT:
-                NavigationHelper.openAbout(this);
+                NavigationHelper.openAboutFragment(getSupportFragmentManager());
                 break;
         }
     }
@@ -391,7 +379,6 @@ public class MainActivity extends AppCompatActivity {
                 .putString(getString(R.string.theme_key), newTheme)
                 .apply();
         ThemeHelper.setDayNightMode(this);
-        recreate();
     }
 
     private void updateBottomNavigationSelection() {

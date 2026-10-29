@@ -22,10 +22,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import us.shandian.giga.ui.fragment.MissionsFragment;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
+import net.newpipe.app.AboutFragment;
 import net.newpipe.app.extensions.ContextKt;
 import net.newpipe.app.navigation.Destination;
 
@@ -71,6 +71,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+
+import us.shandian.giga.ui.fragment.MissionsFragment;
 
 import java.util.List;
 import java.util.Optional;
@@ -582,6 +584,13 @@ public final class NavigationHelper {
     public static void openDownloadsFragment(final FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new MissionsFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openAboutFragment(final FragmentManager fragmentManager) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new AboutFragment())
                 .addToBackStack(null)
                 .commit();
     }

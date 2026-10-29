@@ -129,6 +129,7 @@ kotlin {
             implementation(libs.androidx.activity)
             implementation(libs.androidx.preference)
             implementation(libs.androidx.browser)
+            implementation(libs.androidx.fragment)
         }
         val androidDeviceTest by getting {
             dependencies {
