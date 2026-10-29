@@ -153,6 +153,8 @@ public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInf
         if (MediaCCCLiveStreamKiosk.KIOSK_ID.equals(currentInfo.getId())
                 && ServiceList.MediaCCC.getServiceId() == currentInfo.getServiceId()) {
             setEmptyStateMessage(R.string.no_live_streams);
+        } else {
+            setEmptyStateMessage(R.string.home_empty_message);
         }
     }
 }

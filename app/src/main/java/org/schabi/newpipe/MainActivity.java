@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         toolbarLayoutBinding = mainBinding.toolbarLayout;
         setContentView(mainBinding.getRoot());
 
-        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+        if (savedInstanceState == null) {
             initFragments();
         }
 
@@ -345,16 +345,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomNavigation() {
         mainBinding.bottomNavigation.setOnItemSelectedListener(item -> {
+            final Fragment current = getSupportFragmentManager()
+                    .findFragmentById(R.id.fragment_holder);
             final int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
-                NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+                if (!(current instanceof MainFragment)) {
+                    NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+                }
                 return true;
             } else if (itemId == R.id.navigation_bookmarks) {
-                NavigationHelper.openBookmarksFragment(getSupportFragmentManager());
+                if (!(current instanceof BookmarkFragment)) {
+                    NavigationHelper.openBookmarksFragment(getSupportFragmentManager());
+                }
                 return true;
             } else if (itemId == R.id.navigation_downloads) {
-                startService(new Intent(this, DownloadManagerService.class));
-                NavigationHelper.openDownloadsFragment(getSupportFragmentManager());
+                if (!(current instanceof MissionsFragment)) {
+                    startService(new Intent(this, DownloadManagerService.class));
+                    NavigationHelper.openDownloadsFragment(getSupportFragmentManager());
+                }
                 return true;
             } else if (itemId == R.id.navigation_settings) {
                 NavigationHelper.openSettings(this);
@@ -362,11 +370,12 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-        mainBinding.bottomNavigation.setSelectedItemId(R.id.navigation_home);
         mainBinding.bottomNavigation.setVisibility(View.VISIBLE);
+        updateBottomNavigationSelection();
 
         getSupportFragmentManager().addOnBackStackChangedListener(() -> {
             updateBottomNavigationSelection();
+            updateDrawerNavigation();
         });
     }
 
@@ -629,6 +638,8 @@ public class MainActivity extends AppCompatActivity {
             // and no other CommentRepliesFragments are on top of the back stack
             // to show the top level comments again.
             openDetailFragmentFromCommentReplies(fm, true);
+        } else if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
         } else if (!NavigationHelper.tryGotoSearchFragment(fm)) {
             // If search fragment wasn't found in the backstack go to the main fragment
             NavigationHelper.gotoMainFragment(fm);
