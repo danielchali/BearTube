@@ -298,10 +298,12 @@ public class MissionsFragment extends Fragment {
                 mAdapter.forceUpdate();
             }
 
-            mBinder.addMissionEventListener(mAdapter);
+            if (mBinder != null) {
+                mBinder.addMissionEventListener(mAdapter);
+                mBinder.enableNotifications(false);
+            }
             mAdapter.checkMasterButtonsVisibility();
         }
-        if (mBinder != null) mBinder.enableNotifications(false);
     }
 
     @Override
@@ -310,11 +312,15 @@ public class MissionsFragment extends Fragment {
 
         if (mAdapter != null) {
             mForceUpdate = true;
-            mBinder.removeMissionEventListener(mAdapter);
+            if (mBinder != null) {
+                mBinder.removeMissionEventListener(mAdapter);
+            }
             mAdapter.onPaused();
         }
 
-        if (mBinder != null) mBinder.enableNotifications(true);
+        if (mBinder != null) {
+            mBinder.enableNotifications(true);
+        }
     }
 
     private void requestDownloadSaveAsResult(final ActivityResult result) {

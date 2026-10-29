@@ -372,6 +372,35 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 .setDataAndType(resolveShareableUri(mission), resolveMimeType(mission))
                 .putExtra(LocalFilePlayerActivity.IntentExtras.TITLE, mission.storage.getName())
                 .addFlags(FLAG_GRANT_READ_URI_PERMISSION | FLAG_GRANT_PREFIX_URI_PERMISSION);
+
+        final ArrayList<String> uris = new ArrayList<>();
+        final ArrayList<String> titles = new ArrayList<>();
+        int currentIndex = 0;
+        if (mIterator != null) {
+            for (int i = 0; i < mIterator.getItemCount(); i++) {
+                final DownloadManager.MissionItem mItem = mIterator.getItem(i);
+                if (mItem != null && mItem.mission instanceof FinishedMission) {
+                    final FinishedMission fm = (FinishedMission) mItem.mission;
+                    if (fm.storage != null) {
+                        final Uri uri = resolveShareableUri(fm);
+                        if (uri != null) {
+                            if (fm == mission) {
+                                currentIndex = uris.size();
+                            }
+                            uris.add(uri.toString());
+                            titles.add(fm.storage.getName());
+                        }
+                    }
+                }
+            }
+        }
+        playerIntent.putStringArrayListExtra(
+                LocalFilePlayerActivity.IntentExtras.PLAYLIST_URIS, uris);
+        playerIntent.putStringArrayListExtra(
+                LocalFilePlayerActivity.IntentExtras.PLAYLIST_TITLES, titles);
+        playerIntent.putExtra(
+                LocalFilePlayerActivity.IntentExtras.PLAYLIST_INDEX, currentIndex);
+
         mContext.startActivity(playerIntent);
     }
 
@@ -789,9 +818,10 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         setButtonVisible(mStartButton, state[1]);
     }
 
-    private static void setButtonVisible(MenuItem button, boolean visible) {
-        if (button.isVisible() != visible)
+    private static void setButtonVisible(final MenuItem button, final boolean visible) {
+        if (button != null && button.isVisible() != visible) {
             button.setVisible(visible);
+        }
     }
 
     public void refreshMissionItems() {
