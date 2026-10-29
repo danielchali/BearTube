@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import us.shandian.giga.ui.fragment.MissionsFragment;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
@@ -574,6 +575,13 @@ public final class NavigationHelper {
     public static void openBookmarksFragment(final FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new BookmarkFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openDownloadsFragment(final FragmentManager fragmentManager) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new MissionsFragment())
                 .addToBackStack(null)
                 .commit();
     }

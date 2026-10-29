@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int ITEM_ID_HISTORY = -5;
     private static final int ITEM_ID_SETTINGS = 0;
     private static final int ITEM_ID_ABOUT = 2;
+    private static final int ITEM_ID_THEME_TOGGLE = 100;
 
     private static final int ORDER = 0;
     public static final String KEY_IS_IN_BACKGROUND = "is_in_background";
@@ -360,7 +361,8 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openBookmarksFragment(getSupportFragmentManager());
                 return true;
             } else if (itemId == R.id.navigation_downloads) {
-                NavigationHelper.openDownloads(this);
+                startService(new Intent(this, DownloadManagerService.class));
+                NavigationHelper.openDownloadsFragment(getSupportFragmentManager());
                 return true;
             } else if (itemId == R.id.navigation_settings) {
                 NavigationHelper.openSettings(this);
@@ -370,6 +372,41 @@ public class MainActivity extends AppCompatActivity {
         });
         mainBinding.bottomNavigation.setSelectedItemId(R.id.navigation_home);
         mainBinding.bottomNavigation.setVisibility(View.VISIBLE);
+
+        getSupportFragmentManager().addOnBackStackChangedListener(() -> {
+            updateBottomNavigationSelection();
+        });
+    }
+
+    private void toggleTheme() {
+        final boolean isLight = ThemeHelper.isLightThemeSelected(this);
+        final String newTheme = getString(isLight
+                ? R.string.dark_theme_key : R.string.light_theme_key);
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .edit()
+                .putString(getString(R.string.theme_key), newTheme)
+                .apply();
+        ThemeHelper.setDayNightMode(this);
+        recreate();
+    }
+
+    private void updateBottomNavigationSelection() {
+        if (mainBinding == null || mainBinding.bottomNavigation == null) {
+            return;
+        }
+        mainBinding.bottomNavigation.setVisibility(View.VISIBLE);
+        final Fragment current = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_holder);
+        if (current instanceof BookmarkFragment) {
+            mainBinding.bottomNavigation.getMenu()
+                    .findItem(R.id.navigation_bookmarks).setChecked(true);
+        } else if (current instanceof MissionsFragment) {
+            mainBinding.bottomNavigation.getMenu()
+                    .findItem(R.id.navigation_downloads).setChecked(true);
+        } else if (current instanceof MainFragment) {
+            mainBinding.bottomNavigation.getMenu()
+                    .findItem(R.id.navigation_home).setChecked(true);
+        }
     }
 
     private void setupDrawerHeader() {
@@ -629,6 +666,13 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
 
+        final boolean isLight = ThemeHelper.isLightThemeSelected(this);
+        final MenuItem themeToggleItem = menu.add(Menu.NONE, ITEM_ID_THEME_TOGGLE, ORDER,
+                isLight ? R.string.dark_theme_title : R.string.light_theme_title);
+        themeToggleItem.setIcon(isLight ? R.drawable.ic_brightness_medium
+                : R.drawable.ic_brightness_high);
+        themeToggleItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
         updateDrawerNavigation();
 
         return true;
@@ -642,6 +686,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == android.R.id.home) {
             onHomeButtonPressed();
+            return true;
+        } else if (item.getItemId() == ITEM_ID_THEME_TOGGLE) {
+            toggleTheme();
             return true;
         }
         return super.onOptionsItemSelected(item);
