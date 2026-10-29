@@ -122,17 +122,6 @@ BearTube は複数のサービスに対応しています。ドキュメント�
 
 
 <span id="donate"></span>
-## 寄付
-もし、BearTube を気に入っていただけたら、寄付をしていただけると嬉しいです。Bitcoin または Bountysource, Liberapay から寄付をすることができます。BearTube への寄付については、ウェブサイトからお願いします。
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="liberapay.com で BearTube を訪れる" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Liberapay で寄付" height="35px"></td>
-  </tr>
-</table>
-
 ## プライバシーポリシー
 BearTube プロジェクトはメディアウェブサービスを使用する上でのプライベートで匿名の体験を提供することを目的としています。
 そのため、アプリはあなたの同意なしで一切のデータを収集しません。BearTube のプライバシーポリシーはあなたがクラッシュレポートまたは、私たちのブログでコメントを送信した場合にどのようなデータが送信され、保存されるのかを詳細に説明しています。そのドキュメントはこちらから見つけることができます。

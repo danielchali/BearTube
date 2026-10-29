@@ -20,10 +20,7 @@ public final class TabsJsonHelper {
     private static final String JSON_TABS_ARRAY_KEY = "tabs";
 
     private static final List<Tab> FALLBACK_INITIAL_TABS_LIST = List.of(
-            Tab.Type.RECOMMENDATIONS.getTab(),
-            Tab.Type.FEED.getTab(),
-            Tab.Type.SUBSCRIPTIONS.getTab(),
-            Tab.Type.BOOKMARKS.getTab());
+            Tab.Type.RECOMMENDATIONS.getTab());
 
     private TabsJsonHelper() { }
 
@@ -58,6 +55,8 @@ public final class TabsJsonHelper {
             final var returnTabs = tabsArray.streamAsJsonObjects()
                     .map(Tab::from)
                     .filter(Objects::nonNull)
+                    .filter(tab -> tab.getTabId() != Tab.Type.FEED.getTabId()
+                            && tab.getTabId() != Tab.Type.SUBSCRIPTIONS.getTabId())
                     .collect(Collectors.toUnmodifiableList());
 
             return returnTabs.isEmpty() ? getDefaultTabs() : returnTabs;

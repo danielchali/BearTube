@@ -6,10 +6,10 @@
 package net.newpipe.app
 
 object Constants {
-    const val URL_GITHUB = ""
-    const val URL_WEBSITE = ""
-    const val URL_PRIVACY = ""
-    const val URL_FAQ = ""
+    const val URL_GITHUB = "https://github.com/danielchali/BearSave"
+    const val URL_WEBSITE = "https://github.com/danielchali/BearSave"
+    const val URL_PRIVACY = "https://github.com/danielchali/BearSave#privacy"
+    const val URL_FAQ = "https://github.com/danielchali/BearSave#faq"
 
     const val KEY_STREAMING_SERVICE = "service"
 }

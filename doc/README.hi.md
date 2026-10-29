@@ -123,17 +123,6 @@ BearTube ना ही किसी Google फ्रेमवर्क लाइ
 
 
 
-## आर्थिक योगदान करें
-यदि आपको न्यूपाइप पसंद है, तो दान भेजने के लिए आपका स्वागत है। आप Liberapay से दान कर सकते हैं। हम Liberapay को प्राथमिकता देते हैं, क्योंकि यह ओपन-सोर्स और गैर-लाभकारी दोनों है। न्यूपाइप को दान देने के बारे में अधिक जानकारी के लिए कृपया हमारी वेबसाइट पर जाएँ।
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px"></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="liberapay.com पर BearTube को देखें" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Liberapay के ज़रिए दान करें" height="35px"></td>
-  </tr>
-</table>
-
 ## गोपनीयता और शर्तें
 
 BearTube परियोजना का लक्ष्य है मीडिया वेब सेवाओं का इस्तेमाल करने के लिए एक निजी, गुमनाम अनुभव प्रदान करना,

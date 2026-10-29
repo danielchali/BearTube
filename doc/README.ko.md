@@ -117,17 +117,6 @@ BearTube는 서비스의 공식 API를 이용하여 정보를 받아오는 방�
 
 
 
-## 기부
-만약 BearTube가 마음에 들었다면, 우리는 기부에 대해 기꺼이 환영합니다. bitcoin을 보내거나, Bountysource 또는 Liberapay를 통해 기부할 수 있습니다. BearTube에 기부하는 것에 대한 자세한 정보를 원한다면, 우리의 웹사이트를 방문하여 주십시오.
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="Visit BearTube at liberapay.com" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## 개인정보 보호 정책
 
 BearTube 프로젝트는 미디어 웹 서비스를 사용하는 것에 대한 사적의, 익명의 경험을 제공하는 것을 목표로 하고 있습니다.

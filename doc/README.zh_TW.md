@@ -122,17 +122,6 @@ BearTube 支援多種服務。我們的使用文件有如何增加新服務與�
 
 
 <span id="donate"></span>
-## 捐款
-若你喜歡 BearTube 我們歡迎捐款。你可以使用 bitcoin ，也能在 Bountysource 或 Liberapay 上捐款。 更多關於捐款資訊，請見我們的網站。
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="Visit BearTube at liberapay.com" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## 隱私權政策
 BearTube 專案旨在提供私人與匿名的網路媒體使用體驗。
 因此，此軟體不在沒有你的同意下收集任何資料。BearTube 的隱私權政策說明了送出錯誤報告與在我們的部落格上留言時何種資料會被傳輸或儲存。你可以在這裡找到此文件。

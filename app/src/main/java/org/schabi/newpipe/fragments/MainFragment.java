@@ -108,6 +108,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         binding.mainTabLayout.setupWithViewPager(binding.pager);
         binding.mainTabLayout.addOnTabSelectedListener(this);
+        binding.mainTabLayout.setVisibility(View.GONE);
 
         setupTabs();
         updateTabLayoutPosition();
@@ -240,8 +241,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         tabLayout.setSelectedTabIndicatorGravity(
                 bottom ? INDICATOR_GRAVITY_TOP : INDICATOR_GRAVITY_BOTTOM);
 
+        pagerParams.removeRule(RelativeLayout.BELOW);
+        pagerParams.removeRule(RelativeLayout.ABOVE);
         tabLayout.setLayoutParams(tabParams);
         viewPager.setLayoutParams(pagerParams);
+        tabLayout.setVisibility(View.GONE);
 
         // change the background and icon color of the tab layout:
         // service-colored at the top, app-background-colored at the bottom

@@ -117,17 +117,6 @@ Dacă doriţi să vă implicaţi, accesaţi [notele noastre de contribuţie](../
 
 
 
-## Donaţii
-Dacă vă place BearTube, am fi bucuroşi să primim o donaţie. Puteţi să ne trimiteţi bitcoin sau să ne donaţi cu Bountysource sau Liberapay. Pentru mai multe informaţii în legătură cu donaţiile către BearTube, vă rugăm vizitaţi website-ul nostru.
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="Visit BearTube at liberapay.com" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## Politica de Confidenţialitate
 
 Proiectul BearTube îşi propune să furnizeze o experienţă privată şi anonimă pentru utilizarea serviciilor web media.

@@ -121,16 +121,6 @@ Que vous ayez des idées, des traductions, des changements de design, du nettoya
 
 
 
-## Dons
-Si vous aimez BearTube, vous êtes invités à envoyer un don. Nous préferons Liberapay, car c'est à la fois open-source et à but non-lucratif. Pour plus d'informations sur comment donner à BearTube, visitez notre site web
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="assets/liberapay_qr_code.png" alt="Visitez BearTube sur liberapay.com" width="100px"></td>
-    <td><img src="assets/liberapay_donate_button.svg" alt="Donnez via Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## Politique de confidentialité
 
 Le projet BearTube vise à offrir une expérience privée et anonyme pour l'utilisation de services médiatiques basés sur le Web. Par conséquent, l'application ne recueille aucune donnée sans votre consentement. La politique de confidentialité de BearTube explique en détail quelles données sont envoyées et stockées lorsque vous envoyez un rapport d'incident ou laissez un commentaire sur notre blog. Vous pouvez trouver le document ici.

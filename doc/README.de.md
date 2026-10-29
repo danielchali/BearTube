@@ -137,19 +137,6 @@ Wenn du dich einbringen willst, sieh dir die [Beitragshinweise](/.github/CONTRIB
 
 
 
-## Spenden
-Wenn dir BearTube gefällt, kannst du uns gerne durch eine Spende unterstützen.
-Wir bevorzugen Liberapay, da es sowohl quelloffen als auch nicht gewinnorientiert ist.
-Für weitere Informationen über Spenden an BearTube, besuche unsere Website.
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="Gehe zu BearTube auf liberapay.com" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Spenden mit Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## Privacy Policy
 
 Das BearTube Projekt hat zum Ziel, eine private und anonyme Benutzung von Web-basierten Medien-Dienste zu ermöglichen.

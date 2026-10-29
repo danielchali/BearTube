@@ -126,18 +126,6 @@
 
 
 
-## التبرعات
-
-إذا كنت تحب BearTube، فنحن نرحب بك لإرسال التبرع. نحن نفضل Liberapay لأنه مفتوح المصدر وغير ربحي. لمزيد من المعلومات حول كيفية التبرع لـ BearTube، تفضل بزيارة موقعنا الإلكتروني
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="assets/liberapay_qr_code.png" alt="Visitez BearTube sur liberapay.com" width="100px"></td>
-    <td><img src="assets/liberapay_donate_button.svg" alt="Donnez via Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## سياسة الخصوصية
 
 يهدف مشروع BearTube إلى توفير تجربة خاصة ومجهولة لاستخدام خدمات الوسائط المستندة إلى الويب. ولذلك، فإن التطبيق لا يجمع أي بيانات دون موافقتك. تشرح سياسة خصوصية BearTube بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير بالحادث أو ترك تعليق على مدونتنا. يمكنك العثور على المستند هنا.

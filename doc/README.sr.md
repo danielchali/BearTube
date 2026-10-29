@@ -113,17 +113,6 @@ BearTube ради тако што преузима потребне податк
 
 
 
-## Донација
-Ако вам се свиђа BearTube, можете послати донацију. Више волимо Liberapay, јер је отвореног кода и непрофитан. За више информација о донирању апликацији BearTube, посетите наш веб-сајт.
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="Visit BearTube at liberapay.com" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## Политика приватности
 
 Пројекат BearTube има за циљ да обезбеди приватно, анонимно искуство за коришћење медијских услуга заснованих на вебу. Стога, апликација не прикупља никакве податке без вашег пристанка. Политика приватности апликације BearTube детаљно објашњава који се подаци шаљу и чувају када пошаљете извештај о отказивању или оставите коментар на нашем блогу. Документ можете пронаћи овде.

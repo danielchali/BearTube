@@ -114,17 +114,6 @@ Jeśli chcesz pomóc, przeczytaj [Notkę o wkładzie](../.github/CONTRIBUTING.md
 
 
 
-## Wesprzyj
-Jeśli podoba Ci się BearTube, bardzo ucieszylibyśmy się z dotacji. Możesz wysłać bitcoin lub przekazać darowiznę przez Bountysource lub Liberapay. Po więcej informacji o darowiznach dla BearTube, proszę zobacz naszą stronę.
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="Visit BearTube at liberapay.com" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## Polityka prywatności
 
 Założeniem projektu BearTube jest dostarczanie prywatnego, anonimowego dostępu do zasobów i usług internetowych.

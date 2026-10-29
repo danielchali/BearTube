@@ -3,6 +3,7 @@
     <style name="OpeningTheme" parent="Base.OpeningTheme">
         <item name="android:windowSplashScreenBackground">@color/beartube_splash_blue</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_foreground</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
         <item name="android:windowSplashScreenBrandingImage">@drawable/splash_dredlabs_branding</item>
     </style>
 </resources>

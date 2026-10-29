@@ -112,17 +112,6 @@ Hadaad jeceshahay inaad qayb ka noqoto, fiiri [ogaysiisyada kusoo kordhinta](../
 
 
 
-## Ugu Deeq
-Hadaad jeceshahay BearTube waan ku faraxsanaan lahayn deeq. Waxaad soo diri kartaa bitcoin ama sidoo kale waxaad deeqda kusoo diri kartaa xaga Bountysource ama Liberapay. Faahfaahin dheeraad ah oo kusaabsan ugu deeqida BearTube, fadlan booqo website-kanaga.
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="Visit BearTube at liberapay.com" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## Siyaasada Sirdhawrka
 
 Mashruuca BearTube waxay ujeedadiisu tahay inuu bixiyo wax kuu gaar ah, oo adoon shaqsi ahaan laguu aqoonsan aad isticmaasho website-yada wax laga daawado/dhagaysto.

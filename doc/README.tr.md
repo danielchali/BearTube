@@ -116,17 +116,6 @@ Eğer yer almak istiyorsanız, [katkı sağlayanlar için hazırladığımız no
 
 
 
-## Bağış
-BearTube'ı beğendiyseniz, yapacağınız bağışlar bizi motive eder. Bitcoin gönderebilir veya Bountysource veya Liberapay aracılığıyla bağış yapabilirsiniz. BearTube'a bağış yapma hakkında daha fazla bilgi için lütfen web sitemizi ziyaret edin.
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="../assets/liberapay_qr_code.png" alt="liberapay.com üzerinde BearTube'ı ziyaret edin" width="100px"></td>
-    <td><img src="../assets/liberapay_donate_button.svg" alt="Liberapay aracılığıyla bağış yapın" height="35px"></td>
-  </tr>
-</table>
-
 ## Gizlilik politikası
 
 BearTube projesi, çevrimiçi akış hizmetlerini kullanmak için özel, özgür ve anonim bir deneyim sunmayı amaçlamaktadır.

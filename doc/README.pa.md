@@ -120,17 +120,6 @@ BearTube ਤੁਹਾਡੇ ਦੁਆਰਾ ਵਰਤੀ ਜਾ ਰਹੀ ਸੇ
 
 
 
-## ਦਾਨ
-ਜੇਕਰ ਤੁਹਾਨੂੰ BearTube ਪਸੰਦ ਹੈ, ਤਾਂ ਤੁਹਾਡਾ ਦਾਨ ਭੇਜਣ ਲਈ ਸੁਆਗਤ ਹੈ। ਅਸੀਂ Liberapay ਨੂੰ ਤਰਜੀਹ ਦਿੰਦੇ ਹਾਂ, ਕਿਉਂਕਿ ਇਹ ਓਪਨ-ਸੋਰਸ ਅਤੇ ਗੈਰ-ਮੁਨਾਫ਼ਾ ਦੋਵੇਂ ਹੈ। ਨਿਊ ਪਾਈਪ ਨੂੰ ਦਾਨ ਕਰਨ ਬਾਰੇ ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੀ ਵੈੱਬਸਾਈਟ 'ਤੇ ਜਾਓ।
-
-<table>
-  <tr>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></td>
-    <td><img src="assets/liberapay_qr_code.png" alt="liberapay.com 'ਤੇ BearTube ਨੂੰ ਵੇਖੋ" width="100px"></td>
-    <td><img src="assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></td>
-  </tr>
-</table>
-
 ## ਗੋਪਨੀਅਤਾ ਨੀਤੀ
 
 ਨਿਊਪਾਈਪ ਪ੍ਰੋਜੈਕਟ ਦਾ ਉਦੇਸ਼ ਵੈੱਬ-ਆਧਾਰਿਤ ਮੀਡੀਆ ਸੇਵਾਵਾਂ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ ਇੱਕ ਨਿੱਜੀ, ਅਗਿਆਤ ਅਨੁਭਵ ਪ੍ਰਦਾਨ ਕਰਨਾ ਹੈ। ਇਸ ਲਈ, ਇਹ ਐਪ ਤੁਹਾਡੀ ਇਜਾਜ਼ਤ ਤੋਂ ਬਿਨਾਂ ਕੋਈ ਡਾਟਾ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰਦੀ ਹੈ। BearTube ਦੀ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਅਤੇ ਸ਼ਰਤਾਂ ਵਿਸਤਾਰ ਵਿੱਚ ਦੱਸਦੀਆਂ ਹਨ ਕਿ ਕਰੈਸ਼ ਰਿਪੋਰਟ ਭੇਜਣ ਤੇ ਜਾਂ ਸਾਡੇ ਬਲੌਗ ਵਿੱਚ ਕੋਈ ਟਿੱਪਣੀ ਛੱਡਦੇ ਸਮੇਂ ਕਿਹੜਾ ਡੇਟਾ ਭੇਜਿਆ ਅਤੇ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ। ਤੁਹਾਨੂੰ ਦਸਤਾਵੇਜ਼ ਇੱਥੇ ਮਿਲ ਜਾਵੇਗਾ।
