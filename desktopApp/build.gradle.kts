@@ -31,6 +31,9 @@ compose.desktop {
 
             windows {
                 iconFile.set(project.file("resources/paw-icon.ico"))
+                menu = true
+                menuGroup = "BearTube"
+                shortcut = true
             }
             macOS {
                 iconFile.set(project.file("resources/paw-icon.icns"))
