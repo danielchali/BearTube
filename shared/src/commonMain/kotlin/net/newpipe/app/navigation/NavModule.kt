@@ -57,6 +57,16 @@ class Navigator(
     fun navigateTo(destination: Destination) = backstack.add(destination)
 
     /**
+     * Switches between top-level pages without adding duplicate destinations to the back stack.
+     */
+    fun navigateToTopLevel(destination: Destination) {
+        if (backstack.size == 1 && backstack.singleOrNull() == destination) return
+
+        backstack.clear()
+        backstack.add(destination)
+    }
+
+    /**
      * Navigates to the previous entry in the backstack
      */
     fun navigateUp() = when {

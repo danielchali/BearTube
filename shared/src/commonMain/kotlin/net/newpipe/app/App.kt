@@ -16,13 +16,13 @@ import org.koin.plugin.module.dsl.koinConfiguration
 
 /**
  * Entry point for the multiplatform compose application
- * @param startDestination Starting destination for the app; defaults to about
+ * @param startDestination Starting destination for the app; defaults to settings
  * @param onCloseRequest Callback to close the app
  * @param withKoin Additional logic to execute after initialising Koin and setting content
  */
 @Composable
 fun App(
-    startDestination: Destination = Destination.About,
+    startDestination: Destination = Destination.Settings,
     onCloseRequest: () -> Unit,
     withKoin: @Composable () -> Unit = {}
 ) {
