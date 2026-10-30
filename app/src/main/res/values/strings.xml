@@ -408,7 +408,8 @@
     <string name="default_kiosk_page_summary">Default Kiosk</string>
     <string name="recommendations_title">Home</string>
     <string name="recommendations_page_summary">Videos based on your watch and search history</string>
-    <string name="recommendations_empty">Watch or search YouTube videos to build your recommendations.</string>
+        <string name="home_empty_message">Try searching for your music or video</string>
+    <string name="recommendations_empty">Try searching for your music or video</string>
     <string name="channel_page_summary">Channel page</string>
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscriptions yet</string>

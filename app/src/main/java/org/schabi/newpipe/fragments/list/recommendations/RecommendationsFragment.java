@@ -163,7 +163,7 @@ public class RecommendationsFragment
     @Override
     public void showEmptyState() {
         stopRefreshing();
-        setEmptyStateMessage(R.string.recommendations_empty);
+        setEmptyStateMessage(R.string.home_empty_message);
         super.showEmptyState();
     }
 

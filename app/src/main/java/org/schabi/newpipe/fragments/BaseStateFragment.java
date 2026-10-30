@@ -137,6 +137,9 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     @Override
     public void showEmptyState() {
         isLoading.set(false);
+        if (useAsFrontPage) {
+            setEmptyStateMessage(R.string.home_empty_message);
+        }
         if (emptyStateView != null) {
             animate(emptyStateView, true, 200);
         }
