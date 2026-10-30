@@ -1,4 +1,4 @@
-name: "Build unsigned release APK on master"
+name: "Build unsigned release APK on main"
 
 on:
   workflow_dispatch:
@@ -6,10 +6,12 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: 'master'
+          ref: 'main'
 
       - uses: actions/setup-java@v5
         with:
@@ -29,10 +31,21 @@ jobs:
           echo >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
           # assume there is only one APK in that folder
-          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipe_v$VERSION_NAME.apk"
+          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/BearTube_v$VERSION_NAME.apk"
 
       - name: "Upload APK"
         uses: actions/upload-artifact@v7
         with:
-          name: app
+          name: BearTube-APK
           path: app/build/outputs/apk/release/*.apk
+
+      - name: Attach APK to the latest GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RELEASE_TAG="$(gh release list --limit 20 --json tagName,isLatest --jq '.[] | select(.isLatest) | .tagName')"
+          if [ -z "$RELEASE_TAG" ]; then
+            echo "No published GitHub Release found to attach the APK to." >&2
+            exit 1
+          fi
+          gh release upload "$RELEASE_TAG" app/build/outputs/apk/release/*.apk --clobber
