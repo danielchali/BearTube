@@ -90,6 +90,19 @@ public final class ThemeHelper {
                 && !isDeviceDarkThemeEnabled(context));
     }
 
+    public static boolean isBlackThemeSelected(final Context context) {
+        final String selectedThemeKey = getSelectedThemeKey(context);
+        final Resources res = context.getResources();
+        final String blackThemeKey = res.getString(R.string.black_theme_key);
+
+        return selectedThemeKey.equals(blackThemeKey)
+                || (selectedThemeKey.equals(res.getString(R.string.auto_device_theme_key))
+                && isDeviceDarkThemeEnabled(context)
+                && PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(res.getString(R.string.night_theme_key), res.getString(R.string.default_night_theme_value))
+                .equals(blackThemeKey));
+    }
+
     /**
      * Return a dialog theme styled according to the (default) selected theme.
      *
@@ -98,7 +111,12 @@ public final class ThemeHelper {
      */
     @StyleRes
     public static int getDialogTheme(final Context context) {
-        return isLightThemeSelected(context) ? R.style.LightDialogTheme : R.style.DarkDialogTheme;
+        if (isLightThemeSelected(context)) {
+            return R.style.LightDialogTheme;
+        } else if (isBlackThemeSelected(context)) {
+            return R.style.BlackDialogTheme;
+        }
+        return R.style.DarkDialogTheme;
     }
 
     /**

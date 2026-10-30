@@ -9,6 +9,7 @@
     android:elevation="16dp"
     android:orientation="vertical"
     app:headerLayout="@layout/drawer_header"
+    app:itemBackground="@drawable/selector_apple_drawer_item"
     app:itemHorizontalPadding="16dp"
     app:itemIconPadding="14dp"
     app:itemIconTint="?attr/colorAccent"

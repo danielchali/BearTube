@@ -8,6 +8,7 @@ import static org.schabi.newpipe.util.SparseItemUtil.fetchUploaderUrlIfSparse;
 import android.content.Context;
 import android.net.Uri;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
@@ -45,7 +46,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
  * </p>
  */
 public enum StreamDialogDefaultEntry {
-    SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) ->
+    SHOW_CHANNEL_DETAILS(R.string.show_channel_details, R.drawable.ic_person, (fragment, item) ->
             fetchUploaderUrlIfSparse(fragment.requireContext(), item.getServiceId(), item.getUrl(),
                     item.getUploaderUrl(), url -> openChannelFragment(fragment, item, url))
     ),
@@ -53,7 +54,7 @@ public enum StreamDialogDefaultEntry {
     /**
      * Enqueues the stream automatically to the current PlayerType.
      */
-    ENQUEUE(R.string.enqueue_stream, (fragment, item) -> {
+    ENQUEUE(R.string.enqueue_stream, R.drawable.ic_playlist_play, (fragment, item) -> {
             final Context ctx = fragment.requireContext().getApplicationContext();
             fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
                 NavigationHelper.enqueueOnPlayer(ctx, singlePlayQueue));
@@ -63,30 +64,30 @@ public enum StreamDialogDefaultEntry {
      * Enqueues the stream automatically to the current PlayerType
      * after the currently playing stream.
      */
-    ENQUEUE_NEXT(R.string.enqueue_next_stream, (fragment, item) -> {
+    ENQUEUE_NEXT(R.string.enqueue_next_stream, R.drawable.ic_next, (fragment, item) -> {
             final Context ctx = fragment.requireContext().getApplicationContext();
             fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
                 NavigationHelper.enqueueNextOnPlayer(ctx, singlePlayQueue));
     }),
 
-    START_HERE_ON_BACKGROUND(R.string.start_here_on_background, (fragment, item) -> {
+    START_HERE_ON_BACKGROUND(R.string.start_here_on_background, R.drawable.ic_headset, (fragment, item) -> {
             final Context ctx = fragment.requireContext().getApplicationContext();
             fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
                 NavigationHelper.playOnBackgroundPlayer(ctx, singlePlayQueue, true));
     }),
 
-    START_HERE_ON_POPUP(R.string.start_here_on_popup, (fragment, item) -> {
+    START_HERE_ON_POPUP(R.string.start_here_on_popup, R.drawable.ic_picture_in_picture, (fragment, item) -> {
             final Context ctx = fragment.requireContext().getApplicationContext();
             fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
                 NavigationHelper.playOnPopupPlayer(ctx, singlePlayQueue, true));
     }),
 
-    SET_AS_PLAYLIST_THUMBNAIL(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
+    SET_AS_PLAYLIST_THUMBNAIL(R.string.set_as_playlist_thumbnail, R.drawable.ic_art_track, (fragment, item) -> {
         throw new UnsupportedOperationException("This needs to be implemented manually "
                 + "by using InfoItemDialog.Builder.setAction()");
     }),
 
-    DELETE(R.string.delete, (fragment, item) -> {
+    DELETE(R.string.delete, R.drawable.ic_delete, (fragment, item) -> {
         throw new UnsupportedOperationException("This needs to be implemented manually "
                 + "by using InfoItemDialog.Builder.setAction()");
     }),
@@ -95,7 +96,7 @@ public enum StreamDialogDefaultEntry {
      * Opens a {@link PlaylistDialog} to either append the stream to a playlist
      * or create a new playlist if there are no local playlists.
      */
-    APPEND_PLAYLIST(R.string.add_to_playlist, (fragment, item) ->
+    APPEND_PLAYLIST(R.string.add_to_playlist, R.drawable.ic_playlist_add, (fragment, item) ->
         PlaylistDialog.createCorrespondingDialog(
                 fragment.getContext(),
                 List.of(new StreamEntity(item)),
@@ -108,10 +109,10 @@ public enum StreamDialogDefaultEntry {
         )
     ),
 
-    PLAY_WITH_KODI(R.string.play_with_kodi_title, (fragment, item) ->
+    PLAY_WITH_KODI(R.string.play_with_kodi_title, R.drawable.ic_tv, (fragment, item) ->
             KoreUtils.playWithKore(fragment.requireContext(), Uri.parse(item.getUrl()))),
 
-    SHARE(R.string.share, (fragment, item) ->
+    SHARE(R.string.share, R.drawable.ic_share, (fragment, item) ->
             ShareUtils.shareText(fragment.requireContext(), item.getName(), item.getUrl(),
                     item.getThumbnails())),
 
@@ -119,7 +120,7 @@ public enum StreamDialogDefaultEntry {
      * Opens a {@link DownloadDialog} after fetching some stream info.
      * If the user quits the current fragment, it will not open a DownloadDialog.
      */
-    DOWNLOAD(R.string.download, (fragment, item) ->
+    DOWNLOAD(R.string.download, R.drawable.ic_file_download, (fragment, item) ->
             fetchStreamInfoAndSaveToDatabase(fragment.requireContext(), item.getServiceId(),
                     item.getUrl(), info -> {
                         // Ensure the fragment is attached and its state hasn't been saved to avoid
@@ -134,11 +135,11 @@ public enum StreamDialogDefaultEntry {
                     })
     ),
 
-    OPEN_IN_BROWSER(R.string.open_in_browser, (fragment, item) ->
+    OPEN_IN_BROWSER(R.string.open_in_browser, R.drawable.ic_public, (fragment, item) ->
             ShareUtils.openUrlInBrowser(fragment.requireContext(), item.getUrl())),
 
 
-    MARK_AS_WATCHED(R.string.mark_as_watched, (fragment, item) ->
+    MARK_AS_WATCHED(R.string.mark_as_watched, R.drawable.ic_visibility_on, (fragment, item) ->
         new HistoryRecordManager(fragment.getContext())
                 .markAsWatched(item)
                 .doOnError(error -> {
@@ -159,18 +160,22 @@ public enum StreamDialogDefaultEntry {
 
     @StringRes
     public final int resource;
+    @DrawableRes
+    public final int iconRes;
     @NonNull
     public final StreamDialogEntry.StreamDialogEntryAction action;
 
     StreamDialogDefaultEntry(@StringRes final int resource,
+                             @DrawableRes final int iconRes,
                              @NonNull final StreamDialogEntry.StreamDialogEntryAction action) {
         this.resource = resource;
+        this.iconRes = iconRes;
         this.action = action;
     }
 
     @NonNull
     public StreamDialogEntry toStreamDialogEntry() {
-        return new StreamDialogEntry(resource, action);
+        return new StreamDialogEntry(resource, iconRes, action);
     }
 
 }

@@ -8,7 +8,12 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -67,17 +72,70 @@ public final class InfoItemDialog {
             detailsView.setVisibility(View.GONE);
         }
 
-        // Get the entry's descriptions which are displayed in the dialog
-        final String[] items = entries.stream()
-                .map(entry -> entry.getString(activity)).toArray(String[]::new);
+        final View thumbnailCard = bannerView.findViewById(R.id.thumbnailCard);
+        final ImageView thumbnailView = bannerView.findViewById(R.id.itemThumbnailView);
+        if (thumbnailView != null && info.getThumbnails() != null && !info.getThumbnails().isEmpty()) {
+            CoilHelper.INSTANCE.loadThumbnail(thumbnailView, info.getThumbnails());
+            if (thumbnailCard != null) {
+                thumbnailCard.setVisibility(View.VISIBLE);
+            }
+        } else if (thumbnailCard != null) {
+            thumbnailCard.setVisibility(View.GONE);
+        }
 
         // Call an entry's action / onClick method when the entry is selected.
-        final DialogInterface.OnClickListener action = (d, index) ->
+        final DialogInterface.OnClickListener action = (d, index) -> {
+            d.dismiss();
             entries.get(index).action.onClick(fragment, info);
+        };
 
-        dialog = new AlertDialog.Builder(activity)
+        final BaseAdapter adapter = new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return entries.size();
+            }
+
+            @Override
+            public StreamDialogEntry getItem(final int position) {
+                return entries.get(position);
+            }
+
+            @Override
+            public long getItemId(final int position) {
+                return position;
+            }
+
+            @Override
+            public View getView(final int position, final View convertView, final ViewGroup parent) {
+                final View view;
+                if (convertView != null) {
+                    view = convertView;
+                } else {
+                    view = View.inflate(activity, R.layout.dialog_item_apple, null);
+                }
+
+                final StreamDialogEntry entry = getItem(position);
+                final TextView itemTitle = view.findViewById(R.id.itemTitle);
+                final ImageView itemIcon = view.findViewById(R.id.itemIcon);
+                final View iconCard = view.findViewById(R.id.itemIconCard);
+
+                itemTitle.setText(entry.getString(activity));
+                if (entry.iconRes != 0) {
+                    itemIcon.setImageResource(entry.iconRes);
+                    if (iconCard != null) {
+                        iconCard.setVisibility(View.VISIBLE);
+                    }
+                } else if (iconCard != null) {
+                    iconCard.setVisibility(View.GONE);
+                }
+
+                return view;
+            }
+        };
+
+        dialog = new AlertDialog.Builder(activity, ThemeHelper.getDialogTheme(activity))
                 .setCustomTitle(bannerView)
-                .setItems(items, action)
+                .setAdapter(adapter, action)
                 .create();
 
     }
@@ -238,7 +296,7 @@ public final class InfoItemDialog {
                               @NonNull final StreamDialogEntry.StreamDialogEntryAction action) {
             for (int i = 0; i < entries.size(); i++) {
                 if (entries.get(i).resource == entry.resource) {
-                    entries.set(i, new StreamDialogEntry(entry.resource, action));
+                    entries.set(i, new StreamDialogEntry(entry.resource, entry.iconRes, action));
                     return this;
                 }
             }

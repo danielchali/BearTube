@@ -37,6 +37,9 @@
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="windowBackground">@color/light_background_color</item>
 
+        <item name="alertDialogTheme">@style/LightDialogTheme</item>
+        <item name="android:dialogTheme">@style/LightDialogTheme</item>
+
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
         <item name="checked_selector">@drawable/selector_checked_light</item>
@@ -64,6 +67,9 @@
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="windowBackground">@color/dark_background_color</item>
 
+        <item name="alertDialogTheme">@style/DarkDialogTheme</item>
+        <item name="android:dialogTheme">@style/DarkDialogTheme</item>
+
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
         <item name="checked_selector">@drawable/selector_checked_dark</item>
@@ -87,6 +93,9 @@
         <item name="android:windowBackground">@color/black_background_color</item>
         <item name="windowBackground">@color/black_background_color</item>
 
+        <item name="alertDialogTheme">@style/BlackDialogTheme</item>
+        <item name="android:dialogTheme">@style/BlackDialogTheme</item>
+
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
 
@@ -99,36 +108,47 @@
     <style name="BlackTheme" parent="Base.BlackTheme"/>
 
     <!-- Dialogs -->
-    <style name="LightDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
+    <style name="LightDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorPrimary">@color/light_dvid_primary_color</item>
         <item name="colorPrimaryDark">@color/light_dvid_primary_color</item>
         <item name="colorAccent">@color/light_dvid_accent_color</item>
-        <item name="android:windowBackground">@color/light_dialog_background_color</item>
-        <item name="windowBackground">@color/light_dialog_background_color</item>
+        <item name="android:windowBackground">@drawable/shape_apple_dialog_bg_light</item>
+        <item name="windowBackground">@drawable/shape_apple_dialog_bg_light</item>
+        <item name="android:windowElevation">24dp</item>
     </style>
 
-    <style name="DarkDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
+    <style name="DarkDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
         <item name="colorPrimary">@color/dark_dvid_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_dvid_primary_color</item>
         <item name="colorAccent">@color/dark_dvid_accent_color</item>
-        <item name="android:windowBackground">@color/dark_dialog_background_color</item>
-        <item name="windowBackground">@color/dark_dialog_background_color</item>
+        <item name="android:windowBackground">@drawable/shape_apple_dialog_bg_dark</item>
+        <item name="windowBackground">@drawable/shape_apple_dialog_bg_dark</item>
+        <item name="android:windowElevation">24dp</item>
     </style>
 
-    <style name="LightDialogMinWidthTheme" parent="Theme.AppCompat.DayNight.Dialog.MinWidth">
+    <style name="BlackDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorPrimary">@color/dark_dvid_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_dvid_primary_color</item>
+        <item name="colorAccent">@color/dark_dvid_accent_color</item>
+        <item name="android:windowBackground">@drawable/shape_apple_dialog_bg_black</item>
+        <item name="windowBackground">@drawable/shape_apple_dialog_bg_black</item>
+        <item name="android:windowElevation">24dp</item>
+    </style>
+
+    <style name="LightDialogMinWidthTheme" parent="Theme.AppCompat.Light.Dialog.MinWidth">
         <item name="colorPrimary">@color/light_dvid_primary_color</item>
         <item name="colorPrimaryDark">@color/light_dvid_primary_color</item>
         <item name="colorAccent">@color/light_dvid_accent_color</item>
-        <item name="android:windowBackground">@color/light_dialog_background_color</item>
-        <item name="windowBackground">@color/light_dialog_background_color</item>
+        <item name="android:windowBackground">@drawable/shape_apple_dialog_bg_light</item>
+        <item name="windowBackground">@drawable/shape_apple_dialog_bg_light</item>
     </style>
 
-    <style name="DarkDialogMinWidthTheme" parent="Theme.AppCompat.DayNight.Dialog.MinWidth">
+    <style name="DarkDialogMinWidthTheme" parent="Theme.AppCompat.Dialog.MinWidth">
         <item name="colorPrimary">@color/dark_dvid_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_dvid_primary_color</item>
         <item name="colorAccent">@color/dark_dvid_accent_color</item>
-        <item name="android:windowBackground">@color/dark_dialog_background_color</item>
-        <item name="windowBackground">@color/dark_dialog_background_color</item>
+        <item name="android:windowBackground">@drawable/shape_apple_dialog_bg_dark</item>
+        <item name="windowBackground">@drawable/shape_apple_dialog_bg_dark</item>
     </style>
 
     <!-- Settings -->
