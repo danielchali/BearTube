@@ -13,9 +13,4 @@
     app:itemIconPadding="14dp"
     app:itemIconTint="?attr/colorAccent"
     app:itemMaxLines="1"
-    app:itemShapeCornerSize="14dp"
-    app:itemShapeInsetBottom="3dp"
-    app:itemShapeInsetEnd="12dp"
-    app:itemShapeInsetStart="12dp"
-    app:itemShapeInsetTop="3dp"
     app:itemTextColor="?android:attr/textColorPrimary" />
