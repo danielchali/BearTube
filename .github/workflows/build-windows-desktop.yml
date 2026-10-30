@@ -4,9 +4,11 @@ on:
   workflow_dispatch:
   push:
   pull_request:
+  release:
+    types: [published]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-windows-installers:
@@ -31,7 +33,7 @@ jobs:
         shell: pwsh
         run: .\gradlew.bat :desktopApp:packageExe :desktopApp:packageMsi --stacktrace --no-daemon
 
-      - name: Upload Windows installers
+      - name: Upload Windows installers as workflow artifacts
         uses: actions/upload-artifact@v7
         with:
           name: BearTube-Windows-installers-${{ github.run_number }}
@@ -40,3 +42,16 @@ jobs:
             desktopApp/build/compose/binaries/main/msi/*.msi
           if-no-files-found: error
           retention-days: 14
+
+      - name: Attach installers to GitHub Release
+        if: github.event_name == 'release' && github.event.action == 'published'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          $files = @(
+            Get-ChildItem -Path 'desktopApp/build/compose/binaries/main/exe/*.exe' -File | ForEach-Object FullName
+            Get-ChildItem -Path 'desktopApp/build/compose/binaries/main/msi/*.msi' -File | ForEach-Object FullName
+          )
+          gh release upload $env:RELEASE_TAG $files --clobber
