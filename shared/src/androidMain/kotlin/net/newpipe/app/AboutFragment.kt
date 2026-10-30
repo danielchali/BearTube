@@ -18,7 +18,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import net.newpipe.app.screen.about.AboutPage
+import net.newpipe.app.screen.about.AboutPageContent
 import net.newpipe.app.theme.AppTheme
 
 /**
@@ -38,7 +38,7 @@ class AboutFragment : Fragment() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        AboutPage(
+                        AboutPageContent(
                             onOpenUrl = { url ->
                                 try {
                                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
