@@ -26,7 +26,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb)
-            packageName = BEARTUBE_APPLICATION_ID_NEW
+            packageName = "BearTube"
             packageVersion = BEARTUBE_VERSION_NAME
 
             windows {
