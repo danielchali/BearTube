@@ -1,51 +1,140 @@
-name: "Build unsigned release APK on main"
+name: Build BearTube release
 
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  release:
+  build-android:
+    name: Build Android APK
     runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+
+      - name: Build release APK
+        run: ./gradlew assembleRelease --stacktrace
+
+      - name: Name APK with app version
+        shell: bash
+        run: |
+          VERSION_NAME="$(jq -r '.elements[0].versionName' app/build/outputs/apk/release/output-metadata.json)"
+          test -n "$VERSION_NAME" && test "$VERSION_NAME" != "null"
+          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/BearTube_v${VERSION_NAME}.apk"
+          echo "Built BearTube $VERSION_NAME APK." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Android APK for release publishing
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-apk
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
+          retention-days: 14
+
+  build-windows:
+    name: Build Windows EXE and MSI
+    runs-on: windows-2022
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v6
+
+      - name: Build Windows installers
+        shell: pwsh
+        run: .\gradlew.bat :desktopApp:packageExe :desktopApp:packageMsi --stacktrace --no-daemon
+
+      - name: Upload EXE installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: windows-exe
+          path: desktopApp/build/compose/binaries/main/exe/*.exe
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload MSI installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: windows-msi
+          path: desktopApp/build/compose/binaries/main/msi/*.msi
+          if-no-files-found: error
+          retention-days: 14
+
+  publish-release:
+    name: Tag and publish release
+    runs-on: ubuntu-latest
+    needs:
+      - build-android
+      - build-windows
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6
+      - name: Check out release commit
+        uses: actions/checkout@v6
         with:
-          ref: 'main'
+          ref: ${{ github.sha }}
 
-      - uses: actions/setup-java@v5
+      - name: Download Android APK
+        uses: actions/download-artifact@v7
         with:
-          distribution: 'temurin'
-          java-version: '21'
-          cache: 'gradle'
+          name: android-apk
+          path: release-assets/android
 
-      - name: "Build release APK"
-        run: ./gradlew assembleRelease --stacktrace
-
-      - name: "Rename APK"
-        run: |
-          VERSION_NAME="$(jq -r ".elements[0].versionName" "app/build/outputs/apk/release/output-metadata.json")"
-          echo "Version name: $VERSION_NAME" >> "$GITHUB_STEP_SUMMARY"
-          echo '```json' >> "$GITHUB_STEP_SUMMARY"
-          cat "app/build/outputs/apk/release/output-metadata.json" >> "$GITHUB_STEP_SUMMARY"
-          echo >> "$GITHUB_STEP_SUMMARY"
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
-          # assume there is only one APK in that folder
-          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/BearTube_v$VERSION_NAME.apk"
-
-      - name: "Upload APK"
-        uses: actions/upload-artifact@v7
+      - name: Download Windows EXE
+        uses: actions/download-artifact@v7
         with:
-          name: BearTube-APK
-          path: app/build/outputs/apk/release/*.apk
+          name: windows-exe
+          path: release-assets/windows-exe
 
-      - name: Attach APK to the latest GitHub Release
+      - name: Download Windows MSI
+        uses: actions/download-artifact@v7
+        with:
+          name: windows-msi
+          path: release-assets/windows-msi
+
+      - name: Create unique versioned GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
-          RELEASE_TAG="$(gh release list --limit 20 --json tagName,isLatest --jq '.[] | select(.isLatest) | .tagName')"
-          if [ -z "$RELEASE_TAG" ]; then
-            echo "No published GitHub Release found to attach the APK to." >&2
+          VERSION_NAME="$(sed -nE 's/^const val BEARTUBE_VERSION_NAME = "([^"]+)".*/\1/p' buildSrc/src/main/kotlin/ProjectConfig.kt)"
+          if [ -z "$VERSION_NAME" ]; then
+            echo "Could not read BEARTUBE_VERSION_NAME from ProjectConfig.kt" >&2
             exit 1
           fi
-          gh release upload "$RELEASE_TAG" app/build/outputs/apk/release/*.apk --clobber
+
+          RELEASE_TAG="v${VERSION_NAME}+build.${GITHUB_RUN_NUMBER}"
+          RELEASE_TITLE="BearTube ${VERSION_NAME} (build ${GITHUB_RUN_NUMBER})"
+          RELEASE_NOTES="Automated release built from commit ${GITHUB_SHA}. Includes the Android APK and Windows EXE/MSI installers."
+
+          gh release create "$RELEASE_TAG" \
+            release-assets/android/*.apk \
+            release-assets/windows-exe/*.exe \
+            release-assets/windows-msi/*.msi \
+            --target "$GITHUB_SHA" \
+            --title "$RELEASE_TITLE" \
+            --notes "$RELEASE_NOTES" \
+            --latest
+
+          echo "Published $RELEASE_TITLE as $RELEASE_TAG." >> "$GITHUB_STEP_SUMMARY"
